@@ -1,17 +1,18 @@
 import React from "react";
-import Header from "./Components/Header";
-import Navigation from "./Components/Navgation"
-import { BrowserRouter } from "react-router-dom";
-export default function App(){
-  return(<>
-   <BrowserRouter>
-    <Header/>
-  <Navigation/>
-   </BrowserRouter>
-  </>
-  
-  
+import ContextApi from "./Components/ContextApi"; // adjust path
+import { Home } from "./Pages/home";
+import Header from "./Components/Header"
+import Navgation from "./Components/Navgation"
 
-  
-  )
+
+function App() {
+  return (
+    <ContextApi>
+      {/* <Home/> */}
+      <Header/>
+      <Navgation/>
+    </ContextApi>
+  );
 }
+
+export default App;

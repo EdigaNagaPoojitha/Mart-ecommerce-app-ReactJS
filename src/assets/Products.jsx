@@ -33,13 +33,8 @@ import wireless04 from "./Images/wireless-04.png";
 
 import sofaSlide from "./Images/hero-img.png";
 import watchSlide from "./Images/watch-07.png";
-import { createContext } from "react";
-import { Children } from "react";
-export const ProductsData=createContext()
-export default function Context({Children}){
 
-
- const SliderData = [
+export const SliderData = [
   {
       id: 1,
       title: "50% Off For Your First Shopping",
@@ -66,7 +61,7 @@ export default function Context({Children}){
   },
 ];
 
- const serviceData = [
+export const serviceData = [
   {
     icon: <ion-icon name="car"></ion-icon>,
     title: "Free Shipping",
@@ -93,7 +88,7 @@ export default function Context({Children}){
   },
 ];
 
- const discoutProducts = [
+export const discoutProducts = [
   {
     id: "01",
     productName: "Stone and Beam Westview ",
@@ -231,7 +226,7 @@ export default function Context({Children}){
 
 ]
 
- const products = [
+export const products = [
   {
     id: "01",
     productName: "Stone and Beam Westview ",
@@ -820,14 +815,3 @@ export default function Context({Children}){
   },
 
 ];
-return(<>
-<ProductsData value={{products,SliderData,serviceData}}>
-
-  {Children}
-</ProductsData>
-
-
-</>)
-
-
-}

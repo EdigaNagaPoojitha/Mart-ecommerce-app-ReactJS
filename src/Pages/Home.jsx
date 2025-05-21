@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import SliderComp from "./HomeComponets/SliderComp"
+import ServiceComp from "./HomeComponets/ServiceComp";
+import DiscountComp from "./HomeComponets/DiscountComp";
+
 export function Home(){
+    
     return(<>
-    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea ipsum accusamus nulla enim aspernatur vitae natus, quis nostrum, nobis debitis nihil eaque accusantium neque totam quidem repellendus, dolorem unde voluptatibus.</h1>
+    
+      <SliderComp/>
+      <ServiceComp/>
+      <DiscountComp/>
     </>)
 }

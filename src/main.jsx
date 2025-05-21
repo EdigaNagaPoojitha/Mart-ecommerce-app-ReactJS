@@ -5,11 +5,18 @@ import App from './App.jsx'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/bootstrap/dist/js/bootstrap.js"
 import {BrowserRouter} from "react-router-dom"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ContextApi from './Components/ContextApi.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   
+    <BrowserRouter>
+  <ContextApi>
     <App />
+</ContextApi>
+</BrowserRouter>
    
 
   </StrictMode>,
