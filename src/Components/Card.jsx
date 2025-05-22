@@ -1,14 +1,11 @@
 import React from "react";
 
-export default function Card({ Data }) {
+export default function Card({Data}) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-4 py-10 lg:mx-[200px]">
-      {Data.map((item, index) => (
-        <div
-          key={index}
+      {Data.map((item, index) => (<div key={index}
           className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
-                     h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full lg:max-w-[90%]  mx-auto"
-        >
+                     h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full lg:max-w-[90%]  mx-auto">
           {/* Decorative SVG */}
           <svg
             className="absolute bottom-0 left-0 mb-8"
