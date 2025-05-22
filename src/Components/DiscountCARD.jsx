@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Card({ Data }) {
+export default function DisCard({ Data }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-4 py-10 lg:mx-[200px]">
       {Data.map((item, index) => (
@@ -48,7 +48,7 @@ export default function Card({ Data }) {
               alt={item.productName}
                className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain "
             />
-
+                       <span class="absolute top-1 left-1 bg-black text-white text-xs px-2 py-2  m-2 rounded-full">{item.discount}%Off</span>     
           </div>
           {/* Text Content */}
           <div className="relative text-white px-6 pb-6 mt-4">
@@ -80,12 +80,11 @@ export default function Card({ Data }) {
                 </span>
               </div>
               <button
-  className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center hover:bg-black"
+  className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center"
   style={{
     borderRadius: "50px",
     fontSize: "1cm",
     padding: "1px",
-    
   }}
 >
   +
