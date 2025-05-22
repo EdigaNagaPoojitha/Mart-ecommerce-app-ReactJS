@@ -19,7 +19,7 @@ const SliderComp = () => {
   };
 
   return (
-    <div className="slider-wrapper" style={{width:"100%"}}>
+    <div className="slider-wrapper" style={{width:"100%",marginTop:"0"}}>
       <Slider {...settings}>
         {slider.map((item) => (
           <div key={item.id} className="slide">

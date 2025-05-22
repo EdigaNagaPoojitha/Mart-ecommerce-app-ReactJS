@@ -2,24 +2,25 @@ import React from "react";
 
 export default function Card({ Data }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 m-60 mt=0">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-4 py-10 lg:mx-[200px]">
       {Data.map((item, index) => (
         <div
           key={index}
-          className="flex-shrink-0 m-6 relative overflow-hidden bg-white-500 rounded-lg max-w-xs shadow-sm "
+          className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
+                     h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full lg:max-w-[90%]  mx-auto"
         >
           {/* Decorative SVG */}
           <svg
             className="absolute bottom-0 left-0 mb-8"
             viewBox="0 0 375 283"
             fill="none"
-            style={{ transform: "scale(1.5)", opacity: 0.1 }}
+            style={{ transform: "scale(1)", opacity: 0.1 }}
           >
             <rect
               x="159.52"
               y="175"
               width="152"
-              height="152"
+              height="158"
               rx="8"
               transform="rotate(-45 159.52 175)"
               fill="white"
@@ -27,7 +28,7 @@ export default function Card({ Data }) {
             <rect
               y="107.48"
               width="152"
-              height="152"
+              height="150"
               rx="8"
               transform="rotate(-45 0 107.48)"
               fill="white"
@@ -35,33 +36,70 @@ export default function Card({ Data }) {
           </svg>
 
           {/* Product Image */}
-          <div className="relative pt-10 px-10 flex items-center justify-center">
+          <div className="relative px-6 flex items-center justify-center h-[150px] sm:h-[180px] md:h-[200px]">
             <div
-              className="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+              className="absolute w-full h-full left-0 bottom-0 opacity-10"
               style={{
-            
                 transform: "rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1)",
-                opacity: 0.2,
               }}
             ></div>
-            <img className="relative w-40" src={item.imgUrl} alt="" />
+            <img
+              src={item.imgUrl}
+              alt={item.productName}
+               className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[400px] sm:mt-[100px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain "
+            />
           </div>
 
           {/* Text Content */}
-          <div className="relative text-white px-6 pb-6 mt-6">
-            <div className="flex justify-between">
-                <div>
-              <span className="block font-semibold text-black text-xl">
-                {item.productName}
-              </span>
-
-               <span className="block font-semibold text-black text-xl">
-                ₹{item.price}
-              </span>
+          <div className="relative text-white px-6 pb-6 mt-4">
+            <div className="flex justify-between items-end">
+              <div>
+                <span className="block font-semibold text-black text-xl">
+                  {item.productName}
+                </span>
+                <div className="flex mt-1 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span
+                      key={i}
+                      className={
+                        i < item.avgRating
+                          ? "text-yellow-400"
+                          : "text-gray-300"
+                      }
+                      style={{ fontSize: "0.8cm" }}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <span
+                  className="block font-bold text-black text-xl mt-2"
+                  style={{ fontSize: "1cm" }}
+                >
+                  ${item.price}
+                </span>
               </div>
-              <span className="block bg-white rounded-full text-purple-500 text-xs font-bold px-3 py-2 leading-none flex items-center">
-                ₹{item.price}
-              </span>
+              <button
+  className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center"
+  style={{
+    borderRadius: "50px",
+    fontSize: "1cm",
+    padding: "1px",
+  }}
+>
+  +
+</button>
+
+              {/* <button
+                className="w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center"
+                style={{
+                  borderRadius: "50px",
+                  fontSize: "1cm",
+                  padding: "1px",
+                }}
+              >
+                +
+              </button> */}
             </div>
           </div>
         </div>
