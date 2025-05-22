@@ -43,7 +43,7 @@ export default function Card({Data}) {
             <img
               src={item.imgUrl}
               alt={item.productName}
-               className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain "
+               className="relative w-[200px] h-[200px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain "
             />
 
           </div>

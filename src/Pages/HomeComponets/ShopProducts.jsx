@@ -4,7 +4,6 @@ import Card from "../../Components/Card";
 
 export default function FilterProducts() {
   const allProducts = useContext(AllProducts) || [];
-console.log(allProducts)
   const defaultCategory = "sofa";
   const defaultProduct = allProducts.filter(
     (item) => item.category === defaultCategory
@@ -26,21 +25,26 @@ console.log(allProducts)
   const [product, dispatch] = useReducer(handlebtn, defaultProduct);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setFiltered] = useState(defaultProduct);
-useEffect(() => {
-  if (searchTerm.trim() === "") {
-    setFiltered(product); // Show category-filtered list by default
-  } else {
-    const filteredBySearch = allProducts.filter((item) => {
-      const name = (item?.name || "").toLowerCase();
-      const category = (item?.category || "").toLowerCase();
-      const term = searchTerm.toLowerCase();
-      
-      return name.startsWith(term) || category.startsWith(term);
-    });
-    setFiltered(filteredBySearch);
-  }
-}, [searchTerm, product]);
-if (!allProducts.length) return <p className="p-4">Loading products...</p>;
+  
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFiltered(product); // Show category-filtered list by default
+    } else {
+      const filteredBySearch = allProducts.filter((item) => {
+        const name = (item?.productName || "").toLowerCase();
+        const category = (item?.category || "").toLowerCase();
+        const term = searchTerm.toLowerCase();
+        
+        return name.startsWith(term) || category.startsWith(term);
+      });
+      setFiltered(filteredBySearch);
+    }
+  }, [searchTerm, product]);
+
+  // Rename to isOpen for clarity, use boolean not string
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (!allProducts.length) return <p className="p-4">Loading products...</p>;
 
   return (
     <>
@@ -49,7 +53,9 @@ if (!allProducts.length) return <p className="p-4">Loading products...</p>;
         <div className="relative inline-block text-left">
           <button
             type="button"
-            className="inline-flex justify-center w-full rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-300"
+            onClick={() => setIsOpen(!isOpen)} // toggle dropdown
+            className="inline-flex justify-center w-full rounded-md bg-#182a4b px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-300"
+            style={{ transform: "none", transition: "none" ,backgroundColor:"#182a4b",color:"white",borderRadius:"10px"}}
           >
             Filter by category
             <svg
@@ -65,26 +71,34 @@ if (!allProducts.length) return <p className="p-4">Loading products...</p>;
               />
             </svg>
           </button>
-          <div className="absolute mt-2 w-44 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-10">
-            <div className="py-1">
-              {["sofa", "chair", "watch", "mobile", "wireless"].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => dispatch({ type: cat, payload: cat })}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700"
-                >
-                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                </button>
-              ))}
+
+          {/* Dropdown content only visible when isOpen */}
+          {isOpen && (
+            <div className="absolute mt-2 w-44 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-10">
+              <div className="py-1">
+                {["sofa", "chair", "watch", "mobile", "wireless"].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      dispatch({ type: cat, payload: cat });
+                      setIsOpen(false); // close dropdown after selection
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700"
+                    style={{ hover:"scale(0.8)", transition: "none",backgroundColor:"#182a4b",color:"white",border:"1px thin white" }}
+                  >
+                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Search Input */}
         <input
           type="text"
           placeholder="Search..."
-          className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full md:w-1/2  px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
