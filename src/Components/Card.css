@@ -1,0 +1,13 @@
+@media (min-width: 920px) {
+  .card-wrapper > .card-item {
+    flex: 0 0 31%;
+    max-width: 31%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-wrapper > .card-item {
+    flex: 0 0 23%;
+    max-width: 23%;
+  }
+}

@@ -6,6 +6,8 @@
 /* index.css or App.css */
 body {
   padding-top: 100px; /* adjust based on header height */
+  /* background-color: #182a4b; */
+  color:rgb(170, 170, 170);
 }
 
 
