@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "./ProductSlice";
+import "../index.css"
 
 export default function Card({ Data }) {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="flex flex-wrap justify-center gap-5 px-4 py-10 lg:mx-[200px]">
       {Data.map((item, index) => (
-       < div key={index} className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between 
+        < div key={index} className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between 
                      h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full sm:basis-[48%] md:basis-[30%] lg:basis-[30%] max-w-sm no-underline"
-                     style={{textDecoration:"none"}}
+          style={{ textDecoration: "none" }}
         >
           {/* Decorative SVG */}
           <svg
@@ -47,12 +49,12 @@ export default function Card({ Data }) {
               }}
             ></div>
             <Link
-          to={`/shop/${item.id}`}>
-            <img
-              src={item.imgUrl}
-              alt={item.productName}
-              className="relative w-[200px] h-[200px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain"
-            /></Link>
+              to={`/shop/${item.id}`}>
+              <img
+                src={item.imgUrl}
+                alt={item.productName}
+                className="relative w-[200px] h-[200px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain"
+              /></Link>
           </div>
 
           {/* Text Content */}
@@ -83,21 +85,29 @@ export default function Card({ Data }) {
                 >
                   ${item.price}
                 </span>
-              </div> 
-              <button  
-                className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center hover:bg-black hover:text-white transition"
+              </div>
+              <button
+                className="w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center hover:bg-black hover:bg:black hover:text-white transition-colors"
                 style={{
                   borderRadius: "50px",
                   fontSize: "1cm",
                   padding: "1px",
+                  transform: "none",
+                  backgroundColor: isHovered ? "black" : "white",
+                  color: isHovered ? "white" : "black",
+
                 }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+
                 onClick={() => dispatch(addToCart(item))}
               >
                 +
               </button>
+
             </div>
           </div>
-       </div>
+        </div>
       ))}
     </div>
   );

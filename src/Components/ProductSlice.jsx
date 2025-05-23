@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+//Creating slice
 const productSlice = createSlice({
   name: "products",
   initialState: { cart: [] },
@@ -11,13 +11,13 @@ const productSlice = createSlice({
       } else {
         state.cart.push({ ...action.payload, quantity: 1 });
       }
-    },
+    },//It is used in card ,discount card to add product to cart
     increaseQuantity: (state, action) => {
       const item = state.cart.find(i => i.id === action.payload);
       if (item) {
         item.quantity += 1;
       }
-    },
+    },//increase quantity
     decreaseQuantity: (state, action) => {
       const itemIndex = state.cart.findIndex(i => i.id === action.payload);
       if (itemIndex !== -1) {

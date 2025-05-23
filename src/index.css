@@ -1,6 +1,7 @@
 @import "tailwindcss";
 .plus-button:hover{
-    background-color: rgb(94, 255, 0);
+    background-color: black;
+    color: white;
     
 }
 .cart-icon {

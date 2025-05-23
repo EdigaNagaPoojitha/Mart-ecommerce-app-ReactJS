@@ -75,7 +75,7 @@ const CartPage = () => {
                 <span>Total</span>
                 <span>${total}</span>
               </div>
-              <button className="btn btn-primary mt-3 w-100">Checkout</button>
+              <button className="btn btn-primary mt-3 w-100" disabled>Checkout</button>
             </div>
           </div>
         </div>
