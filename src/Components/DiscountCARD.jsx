@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function DisCard({ Data }) {
   return (
     <div className="flex flex-wrap justify-center gap-5 px-4 py-10 lg:mx-[200px]">
-      {Data.map((item, index) => (<Link  key={index}   to={`/shop/${item.productName}`} style={{textDecoration:"none"}} >
+      {Data.map((item, index) => (<Link  key={index}   to={`/shop/${item.id}`} style={{textDecoration:"none"}} >
         <div
          className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
                      h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full sm:basis-[48%] md:basis-[30%] lg:basis-[30%] max-w-sm"

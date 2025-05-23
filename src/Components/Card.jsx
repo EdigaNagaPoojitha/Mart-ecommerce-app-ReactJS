@@ -7,7 +7,7 @@ export default function Card({ Data }) {
       {Data.map((item, index) => (
         <Link
           key={index}
-          to={`/shop/${item.productName}`}
+          to={`/shop/${item.id}`}
           className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between 
                      h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full sm:basis-[48%] md:basis-[30%] lg:basis-[30%] max-w-sm no-underline"
                      style={{textDecoration:"none"}}
