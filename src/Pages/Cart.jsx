@@ -59,8 +59,9 @@ const CartPage = () => {
           </div>
 
           <div className="col-md-4">
-            <div className="card p-4">
-              <h2>Cart Summary</h2>
+             <h2>Cart Summary</h2>
+            <div className="card p-4 mt-8">
+             
               <div className="d-flex justify-content-between">
                 <span>Subtotal</span>
                 <span>${subtotal.toFixed(2)}</span>

@@ -3,8 +3,13 @@ import "./header.css";
 import { HiUser, HiShoppingCart } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import image from "../assets/Images/achievers_logo.png";
+import { useSelector } from "react-redux";
+import "../../src/index.css"
 
 export default function Header() {
+  const cartItems = useSelector((state) => state.products.cart);
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <nav className="navbar bg-body-tertiary fixed-top">
       <div className="container-fluid header-container">
@@ -31,7 +36,24 @@ export default function Header() {
             <button className="disable" aria-label="User Profile"><HiUser /></button>
           </Link>
           <Link to="/cart">
-            <button  aria-label="Shopping Cart"><HiShoppingCart /></button>
+            <button aria-label="Shopping Cart" style={{ position: 'relative', border: 'none' }}>
+              <HiShoppingCart />
+              {totalQuantity > 0 && (
+                <span style={{
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-8px',
+                  backgroundColor: 'red',
+                  color: 'white',
+                  borderRadius: '50%',
+                  padding: '2px 6px',
+                  fontSize: '12px',
+                  fontWeight: 'bold'
+                }}>
+                  {totalQuantity}
+                </span>
+              )}
+            </button>
           </Link>
         </div>
 
@@ -45,7 +67,7 @@ export default function Header() {
           </div>
 
           {/* Right: Nav Links + Icons */}
-          <div className="nav-icons-container" style={{display:"flex"}}>
+          <div className="nav-icons-container" style={{ display: "flex" }}>
             <ul className="navbar-nav nav-links" >
               <li className="nav-item">
                 <Link className="nav-link" to="/"><b>Home</b></Link>
@@ -62,7 +84,28 @@ export default function Header() {
                 <button className="disable" aria-label="User Profile"><HiUser /></button>
               </Link>
               <Link to="/cart">
-                <button style={{border:"none"}} aria-label="Shopping Cart"><HiShoppingCart /></button>
+                <button
+                  style={{ position: 'relative', border: "none" }}
+                  aria-label="Shopping Cart"
+                  className="cart-icon"
+                >
+                  <HiShoppingCart />
+                  {totalQuantity > 0 && (
+                    <span className="cart-count" style={{
+                      position: 'absolute',
+                      top: '-8px',
+                      right: '-8px',
+                      backgroundColor: 'black',
+                      color: 'white',
+                      borderRadius: '50%',
+                      padding: '2px 6px',
+                      fontSize: '12px',
+                      fontWeight: 'bold'
+                    }}>
+                      {totalQuantity}
+                    </span>
+                  )}
+                </button>
               </Link>
             </div>
           </div>
@@ -79,11 +122,11 @@ export default function Header() {
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div className="offcanvas-body">
-            <ul className="navbar-nav">
-              <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/shop">Shop</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/cart">Cart</Link></li>
+          <div className="offcanvas-body" >
+            <ul className="navbar-nav " >
+              <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li><br />
+              <li className="nav-item"><Link className="nav-link" to="/shop">Shop</Link></li><br />
+              <li className="nav-item"><Link className="nav-link" to="/cart">Cart </Link></li>
             </ul>
           </div>
         </div>
