@@ -1,6 +1,7 @@
 import React, { useReducer, useContext, useState, useEffect } from "react";
 import { AllProducts } from "../../Components/ContextApi";
-import Card from "../../Components/Card";
+import { Suspense } from "react";
+const Card=React.lazy(()=>import ("../../Components/Card"))
 
 export default function FilterProducts() {
   const allProducts = useContext(AllProducts) || [];
@@ -103,9 +104,12 @@ export default function FilterProducts() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+      <Suspense fallback={<div>Loading......</div>}>
+            <Card Data={filtered} />
+      </Suspense>
+ 
 
-      {/* Render Filtered Products */}
-      <Card Data={filtered} />
+
     </>
   );
 }

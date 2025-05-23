@@ -1,13 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function DisCard({ Data }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-4 py-10 lg:mx-[200px]">
-      {Data.map((item, index) => (
+    <div className="flex flex-wrap justify-center gap-5 px-4 py-10 lg:mx-[200px]">
+      {Data.map((item, index) => (<Link  key={index}   to={`/shop/${item.productName}`} style={{textDecoration:"none"}} >
         <div
-          key={index}
-          className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
-                     h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full lg:max-w-[90%]  mx-auto"
+         className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
+                     h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full sm:basis-[48%] md:basis-[30%] lg:basis-[30%] max-w-sm"
         >
           {/* Decorative SVG */}
           <svg
@@ -46,15 +46,18 @@ export default function DisCard({ Data }) {
             <img
               src={item.imgUrl}
               alt={item.productName}
-               className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain "
+              className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain"
             />
-                       <span class="absolute top-1 left-1 bg-black text-white text-xs px-2 py-2  m-2 rounded-full">{item.discount}%Off</span>     
+            <span className="absolute top-1 left-1 bg-black text-white text-xs px-2 py-2 m-2 rounded-full">
+              {item.discount}% Off
+            </span>
           </div>
+
           {/* Text Content */}
           <div className="relative text-white px-6 pb-6 mt-4">
             <div className="flex justify-between items-end">
               <div>
-                <span className="block font-semibold text-black text-xl">
+                <span className="block font-semibold text-black text-xl no-underline">
                   {item.productName}
                 </span>
                 <div className="flex mt-1 mb-2">
@@ -80,20 +83,18 @@ export default function DisCard({ Data }) {
                 </span>
               </div>
               <button
-  className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center"
-  style={{
-    borderRadius: "50px",
-    fontSize: "1cm",
-    padding: "1px",
-  }}
->
-  +
-</button>
-
-              
+                className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center"
+                style={{
+                  borderRadius: "50px",
+                  fontSize: "1cm",
+                  padding: "1px",
+                }}
+              >
+                +
+              </button>
             </div>
           </div>
-        </div>
+        </div></Link>
       ))}
     </div>
   );
