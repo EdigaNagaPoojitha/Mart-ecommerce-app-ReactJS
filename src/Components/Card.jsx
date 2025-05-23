@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "./ProductSlice";
 
 export default function Card({ Data }) {
+  const dispatch=useDispatch();
   return (
     <div className="flex flex-wrap justify-center gap-5 px-4 py-10 lg:mx-[200px]">
       {Data.map((item, index) => (
-        <Link
-          key={index}
-          to={`/shop/${item.id}`}
-          className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between 
+       < div key={index} className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between 
                      h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full sm:basis-[48%] md:basis-[30%] lg:basis-[30%] max-w-sm no-underline"
                      style={{textDecoration:"none"}}
         >
@@ -46,11 +46,13 @@ export default function Card({ Data }) {
                 transform: "rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1)",
               }}
             ></div>
+            <Link
+          to={`/shop/${item.id}`}>
             <img
               src={item.imgUrl}
               alt={item.productName}
               className="relative w-[200px] h-[200px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain"
-            />
+            /></Link>
           </div>
 
           {/* Text Content */}
@@ -81,21 +83,21 @@ export default function Card({ Data }) {
                 >
                   ${item.price}
                 </span>
-              </div>
-              <button
+              </div> 
+              <button  
                 className="plus-button w-[50px] h-[50px] border border-gray-300 bg-white text-black flex items-center justify-center hover:bg-black hover:text-white transition"
                 style={{
                   borderRadius: "50px",
                   fontSize: "1cm",
                   padding: "1px",
                 }}
-                onClick={(e) => e.preventDefault()}
+                onClick={() => dispatch(addToCart(item))}
               >
                 +
               </button>
             </div>
           </div>
-        </Link>
+       </div>
       ))}
     </div>
   );

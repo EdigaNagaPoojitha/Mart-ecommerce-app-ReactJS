@@ -24,11 +24,8 @@ export default function CardDetails() {
       setRelatedProducts(related);
     }
   }, [products, id]);
-
-
-
-  if (!products) return <div className="p-6 text-center">Loading...</div>;
-  if (!product) return <div className="p-6 text-center">Product not found.</div>;
+ if (!products) return <div className="p-6 text-center">Loading...</div>;
+if (!product) return <div className="p-6 text-center">Product not found.</div>;
 
   return (
     <div className="max mx-auto px-4 py-8">
