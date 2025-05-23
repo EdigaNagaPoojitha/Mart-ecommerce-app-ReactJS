@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, useState, useEffect } from "react";
 import { AllProducts } from "../../Components/ContextApi";
 import { Suspense } from "react";
-const Card=React.lazy(()=>import ("../../Components/Card"))
+const Card = React.lazy(() => import("../../Components/Card"))
 
 export default function FilterProducts() {
   const allProducts = useContext(AllProducts) || [];
@@ -9,7 +9,7 @@ export default function FilterProducts() {
   const defaultProduct = allProducts.filter(
     (item) => item.category === defaultCategory
   );
-
+//creating function to apply function to filtered buttons
   const handlebtn = (state, action) => {
     switch (action.type) {
       case "sofa":
@@ -26,7 +26,7 @@ export default function FilterProducts() {
   const [product, dispatch] = useReducer(handlebtn, defaultProduct);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setFiltered] = useState(defaultProduct);
-  
+
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setFiltered(product); // Show category-filtered list by default
@@ -35,7 +35,7 @@ export default function FilterProducts() {
         const name = (item?.productName || "").toLowerCase();
         const category = (item?.category || "").toLowerCase();
         const term = searchTerm.toLowerCase();
-        
+
         return name.startsWith(term) || category.startsWith(term);
       });
       setFiltered(filteredBySearch);
@@ -56,7 +56,7 @@ export default function FilterProducts() {
             type="button"
             onClick={() => setIsOpen(!isOpen)} // toggle dropdown
             className="inline-flex justify-center w-full rounded-md bg-#182a4b px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-300"
-            style={{ transform: "none", transition: "none" ,backgroundColor:"#182a4b",color:"white",borderRadius:"10px"}}
+            style={{ transform: "none", transition: "none", backgroundColor: "#182a4b", color: "white", borderRadius: "10px" }}
           >
             Filter by category
             <svg
@@ -80,12 +80,15 @@ export default function FilterProducts() {
                 {["sofa", "chair", "watch", "mobile", "wireless"].map((cat) => (
                   <button
                     key={cat}
+
                     onClick={() => {
                       dispatch({ type: cat, payload: cat });
-                      setIsOpen(false); // close dropdown after selection
+                      setSearchTerm(""); // Clear search term when category is selected
+                      setIsOpen(false);  // Close dropdown
                     }}
+
                     className="block w-full text-left px-4 py-2 text-sm text-gray-700"
-                    style={{ hover:"scale(0.8)", transition: "none",backgroundColor:"#182a4b",color:"white",border:"1px thin white" }}
+                    style={{ hover: "scale(0.8)", transition: "none", backgroundColor: "#182a4b", color: "white", border: "1px thin white" }}
                   >
                     {cat.charAt(0).toUpperCase() + cat.slice(1)}
                   </button>
@@ -104,10 +107,16 @@ export default function FilterProducts() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <Suspense fallback={<div>Loading......</div>}>
-            <Card Data={filtered} />
-      </Suspense>
- 
+      {filtered.length === 0 ? (
+        <div className="text-center text-gray-500 py-8 text-lg font-semibold " style={{ margin: "50px" }}>
+          Product not found...
+        </div>
+      ) : (
+        <Suspense fallback={<div>Loading......</div>}>
+          <Card Data={filtered} />
+        </Suspense>
+      )}
+
 
 
     </>

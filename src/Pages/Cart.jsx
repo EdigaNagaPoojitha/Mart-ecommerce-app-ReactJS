@@ -28,7 +28,7 @@ const CartPage = () => {
   return (
     <div className="container my-5">
       {cartItems.length === 0 ? (
-        <div style={{ textAlign: "center", height: "150px" }}>
+        <div style={{ textAlign: "center", height: "350px",padding:"100px" }}>
           <h2>🛒 Your Cart is Empty</h2>
           <Link to="/">
             <button style={{ border: "1px solid white", backgroundColor: "#182a4b", color: "white", padding: "10px", width: "500px", borderRadius: "50px" }}>

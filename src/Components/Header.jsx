@@ -81,7 +81,7 @@ export default function Header() {
             </ul>
             <div className="icons">
               <Link to="/profile">
-                <button className="disable" aria-label="User Profile"><HiUser /></button>
+                <button className="disable" aria-label="User Profile" disabled><HiUser /></button>
               </Link>
               <Link to="/cart">
                 <button
