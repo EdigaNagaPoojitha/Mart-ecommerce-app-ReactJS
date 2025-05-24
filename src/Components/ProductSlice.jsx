@@ -5,13 +5,15 @@ const productSlice = createSlice({
   initialState: { cart: [] },
   reducers: {
     addToCart: (state, action) => {
-      const existing = state.cart.find(item => item.id === action.payload.id);
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        state.cart.push({ ...action.payload, quantity: 1 });
-      }
-    },//It is used in card ,discount card to add product to cart
+  console.log("Added to cart:", action.payload);
+  const existing = state.cart.find(item => item.id === action.payload.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    state.cart.push({ ...action.payload, quantity: 1 });
+  }
+},
+//It is used in card ,discount card to add product to cart
     increaseQuantity: (state, action) => {
       const item = state.cart.find(i => i.id === action.payload);
       if (item) {

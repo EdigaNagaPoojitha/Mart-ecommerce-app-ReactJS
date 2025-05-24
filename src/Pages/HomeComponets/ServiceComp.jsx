@@ -11,7 +11,7 @@ export default function ServiceComp(){
           className="p-6 rounded-2xl shadow-md flex flex-col items-center text-center"
           style={{ backgroundColor: item.bg }}>
           
-          <div className="text-4xl mb-4">{item.icon}</div>
+          <div className="text-4xl mb-4" style={{border: "1px solid white" ,padding:"9px",background:"white",borderRadius:"50px"}}>{item.icon}</div>
           <h3 className="text-xl font-bold mb-1">{item.title}</h3>
           <p className="text-sm text-gray-700">{item.subtitle}</p>
         </div>
