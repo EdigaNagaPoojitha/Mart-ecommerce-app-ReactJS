@@ -2,13 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "./ProductSlice";
+
 export default function DisCard({ Data }) {
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
+
   return (
     <div className="flex flex-wrap justify-center gap-5 px-4 py-10 lg:mx-[200px]">
-      {Data.map((item, index) => (
-        <div key={index}
-         className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
+      {Data.map((item) => (
+        <div
+          key={item.id} // use id instead of index
+          className="relative overflow-hidden bg-white rounded-lg shadow-sm flex flex-col justify-between
                      h-[380px] sm:h-[400px] md:h-[450px] lg:h-[470px] w-full sm:basis-[48%] md:basis-[30%] lg:basis-[30%] max-w-sm"
         >
           {/* Decorative SVG */}
@@ -45,12 +48,13 @@ export default function DisCard({ Data }) {
                 transform: "rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1)",
               }}
             ></div>
-            <Link  key={index}   to={`/shop/${item.id}`} style={{textDecoration:"none"}} >
-            <img
-              src={item.imgUrl}
-              alt={item.productName}
-              className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain"
-            /></Link>
+            <Link to={`/shop/${item.id}`} style={{ textDecoration: "none" }}>
+              <img
+                src={item.imgUrl}
+                alt={item.productName}
+                className="relative w-[120px] h-[120px] sm:w-[300px] sm:h-[140px] lg:w-[400px] lg:h-[300px] lg:mt-[100px] object-contain"
+              />
+            </Link>
             <span className="absolute top-1 left-1 bg-black text-white text-xs px-2 py-2 m-2 rounded-full">
               {item.discount}% Off
             </span>
@@ -68,9 +72,7 @@ export default function DisCard({ Data }) {
                     <span
                       key={i}
                       className={
-                        i < item.avgRating
-                          ? "text-yellow-400"
-                          : "text-gray-300"
+                        i < item.avgRating ? "text-yellow-400" : "text-gray-300"
                       }
                       style={{ fontSize: "0.8cm" }}
                     >
@@ -92,7 +94,8 @@ export default function DisCard({ Data }) {
                   fontSize: "1cm",
                   padding: "1px",
                 }}
-                 onClick={() => dispatch(addToCart(item))}
+                onClick={() => dispatch(addToCart({ ...item, quantity: 1 }))}
+                aria-label={`Add one ${item.productName} to cart`}
               >
                 +
               </button>
