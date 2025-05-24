@@ -64,8 +64,8 @@ export default function CardDetails() {
           className="w-full md:w-1/2 rounded-md object-cover"
         />
 
-        <div className="flex-1 ">
-          <h2 className="text-2xl font-semibold mb-2">{product.productName}</h2>
+        <div className="flex-1 mt-60 ">
+          <h2 className="text-2xl font-semibold mb-2 mt-40">{product.productName}</h2>
 
           {/* Rating */}
           <div className="flex items-center gap-2 mb-2">
